@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log(1)
+        fn()
+        var pro = new Promise(function (resolve, reject) {
+            console.log(3)
+            resolve()
+            console.log(4)
+            setTimeout(function () {
+                console.log(8)
+            }, 0)
+        })
+        pro.then(data => {
+            console.log(7)
+        })
+        setTimeout(function () {
+            console.log(9)
+        }, 0)
+        console.log(5)
+        async function fn () {
+            console.log(2)
+            await pro
+            console.log(6)
+        }
+        // 详细了解同步异步,微队列和宏队列之间的关系!
+    </script>
+</body>
+</html>

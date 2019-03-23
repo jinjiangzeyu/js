@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var arr = [2, 4, 4, [1, 2, [1, 2, 3, 4], 5], [2, 3, [4, 5, 6]]];
+      function dataType(data) {
+        let type = Object.prototype.toString.call(data);
+        let resolve = type.slice(8);
+        resolve = resolve.substring(0, resolve.length - 1);
+        return resolve;
+      }
+      function fn(obj, newArr = []) {
+        for (let i = 0; i < obj.length; i++) {
+          if (dataType(obj[i]) == "Array") {
+            newArr = newArr.concat(obj[i]);
+          } else {
+            newArr.push(obj[i]);
+          }
+        }
+        let check = newArr.every(data => {
+          return dataType(data) != "Array";
+        });
+        if (check) {
+          return newArr;
+        } else {
+          return fn(newArr, []);
+        }
+      }
+      console.log(fn(arr));
+    </script>
+  </body>
+</html>
